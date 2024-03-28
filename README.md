@@ -16,6 +16,12 @@ Use the example program for calculating `a + b - c` provided in the lecture note
 
 ### Solution
 
+The program is in the `calc.asm` file.
+
+Compiled program is in the `calc.com` file.
+
+Result of executing the program is displayed on the screen.
+
 ![screenshot](data/calc.png)
 
 ## Task2
@@ -39,3 +45,5 @@ Add method `visit_BinOp` to the class `Interpreter` so that it can handle multip
 
 4. Testing
 Verify that the interpreter works correctly on different arithmetic expressions, including expressions with parentheses, for example `(2 + 3) * 4` should give result `20`.
+
+### Solution
