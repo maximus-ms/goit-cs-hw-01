@@ -70,7 +70,7 @@ class Lexer:
             if self.current_char == "-":
                 self.advance()
                 return Token(TokenType.MINUS, "-")
-            
+
             if self.current_char == "*":
                 self.advance()
                 return Token(TokenType.MUL, "*")
@@ -78,11 +78,11 @@ class Lexer:
             if self.current_char == "/":
                 self.advance()
                 return Token(TokenType.DIV, "/")
-            
+
             if self.current_char == "(":
                 self.advance()
                 return Token(TokenType.LPAREN, "(")
-            
+
             if self.current_char == ")":
                 self.advance()
                 return Token(TokenType.RPAREN, ")")
