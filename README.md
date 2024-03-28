@@ -26,20 +26,16 @@ Your task is to extend this interpreter to support these additional operations.
 ### Step-by-step instructions
 
 1. Modify the lexer `Lexer`
-
 Add new token types for multiplication `MUL`, division `DIV` and parentheses, which open `LPAREN` and close `RPAREN` part of an arithmetic expression.
 Modify method `get_next_token` of the class `Lexer` so that it recognizes these new symbols.
 
 2. Modify the parser Parser
-
 Add method `factor` for handling numbers and expressions in parentheses.
 Modify method `term`, so that it includes handling of multiplication and division.
 Make appropriate changes in method `expr` to support new hierarchy of operations.
 
 3. Update the Interpreter
-
 Add method `visit_BinOp` to the class `Interpreter` so that it can handle multiplication and division.
 
 4. Testing
-
 Verify that the interpreter works correctly on different arithmetic expressions, including expressions with parentheses, for example `(2 + 3) * 4` should give result `20`.
