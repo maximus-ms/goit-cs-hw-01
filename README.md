@@ -25,7 +25,7 @@ Result of executing the program is displayed on the screen.
 ![screenshot](data/calc.png)
 
 ## Task2
-You have a simple interpreter written in assembly language with support for arithmetic expressions, including addition and subtraction (link to the repository folder), but without support for multiplication, division or parentheses, as described in the lecture notes (link to the repository folder).
+You have a simple interpreter written in assembly language with support for arithmetic expressions, including addition and subtraction, but without support for multiplication, division or parentheses, as described in the lecture notes.
 
 Your task is to extend this interpreter to support these additional operations.
 
