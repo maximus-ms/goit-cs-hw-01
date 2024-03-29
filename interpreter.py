@@ -14,7 +14,7 @@ class TokenType:
     DIV = "DIV"
     LPAREN = "LPAREN"
     RPAREN = "RPAREN"
-    EOF = "EOF"  # Означає кінець вхідного рядка
+    EOF = "EOF"
 
 
 class Token:
@@ -36,7 +36,7 @@ class Lexer:
         """Advances the 'pointer' to the next character in the input line"""
         self.pos += 1
         if self.pos > len(self.text) - 1:
-            self.current_char = None  # Означає кінець введення
+            self.current_char = None  # End of input
         else:
             self.current_char = self.text[self.pos]
 
@@ -129,9 +129,30 @@ class Parser:
 
     def term(self):
         """Parser for 'term' grammar rule. In our case - integer literals."""
+        node = self.factor()
+        while self.current_token.type in (TokenType.MUL, TokenType.DIV):
+            token = self.current_token
+            if token.type == TokenType.MUL:
+                self.eat(TokenType.MUL)
+            elif token.type == TokenType.DIV:
+                self.eat(TokenType.DIV)
+
+            node = BinOp(left=node, op=token, right=self.term())
+        return node
+
+    def factor(self):
+        """Parser for 'factor' grammar rule. In our case - parentheses."""
         token = self.current_token
-        self.eat(TokenType.INTEGER)
-        return Num(token)
+        if token.type == TokenType.INTEGER:
+            self.eat(TokenType.INTEGER)
+            return Num(token)
+        elif token.type == TokenType.LPAREN:
+            self.eat(TokenType.LPAREN)
+            node = self.expr()
+            self.eat(TokenType.RPAREN)
+            return node
+        elif token.type == TokenType.RPAREN:
+            self.error()
 
     def expr(self):
         """Parser for arithmetic expressions."""
@@ -143,14 +164,6 @@ class Parser:
                 self.eat(TokenType.PLUS)
             elif token.type == TokenType.MINUS:
                 self.eat(TokenType.MINUS)
-            elif token.type == TokenType.MUL:
-                self.eat(TokenType.MUL)
-            elif token.type == TokenType.DIV:
-                self.eat(TokenType.DIV)
-            elif token.type == TokenType.LPAREN:
-                self.eat(TokenType.LPAREN)
-            elif token.type == TokenType.RPAREN:
-                self.eat(TokenType.RPAREN)
 
             node = BinOp(left=node, op=token, right=self.term())
 
