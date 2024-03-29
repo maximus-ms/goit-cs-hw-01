@@ -137,7 +137,7 @@ class Parser:
             elif token.type == TokenType.DIV:
                 self.eat(TokenType.DIV)
 
-            node = BinOp(left=node, op=token, right=self.term())
+            node = BinOp(left=node, op=token, right=self.factor())
         return node
 
     def factor(self):
